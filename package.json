@@ -1,0 +1,33 @@
+{
+  "name": "game-forge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A web-based Phaser game studio starter — run locally and extend to build simple Phaser games.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "phaser": "^4.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.20.3",
+    "eslint": "^9.39.5",
+    "jsdom": "^26.1.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.70.0",
+    "vite": "^6.4.3",
+    "vitest": "^3.2.7"
+  }
+}
