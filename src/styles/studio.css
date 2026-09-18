@@ -106,6 +106,10 @@ button {
   color: white;
 }
 
+.studio-button-primary:disabled {
+  opacity: 1;
+}
+
 .studio-button.is-active:not(.studio-button-primary) {
   border-color: var(--accent-2);
   color: var(--accent-2);

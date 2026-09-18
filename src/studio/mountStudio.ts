@@ -161,19 +161,28 @@ export function mountStudio(target: Element): StudioHandle {
   setRunning(true);
 
   function bindGame(game: Game): void {
+    let lastStats: StudioStats | null = null;
+
+    const refreshInspector = (running: boolean): void => {
+      inspectorNode.innerHTML = formatInspector(lastStats, running);
+    };
+
     play.addEventListener('click', () => {
       game.resume();
       setRunning(true);
+      refreshInspector(true);
       status.textContent = `${GAME.title} · playing`;
     });
     pause.addEventListener('click', () => {
       game.pause();
       setRunning(false);
+      refreshInspector(false);
       status.textContent = `${GAME.title} · paused`;
     });
 
     studioEvents.addEventListener(STUDIO_STATS_EVENT, (event) => {
       const stats = (event as CustomEvent<StudioStats>).detail;
+      lastStats = stats;
       objectList.replaceChildren(
         ...stats.objects.map((object) => {
           const item = el('li', { text: object.name });
@@ -181,7 +190,7 @@ export function mountStudio(target: Element): StudioHandle {
           return item;
         }),
       );
-      inspectorNode.innerHTML = formatInspector(stats, !game.isPaused);
+      refreshInspector(!game.isPaused);
       if (!game.isPaused) {
         status.textContent = `${GAME.title} · ${stats.fps} fps · ${stats.objectCount} objects`;
       }

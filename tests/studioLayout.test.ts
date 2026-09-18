@@ -22,6 +22,8 @@ describe('studio shell', () => {
     expect(document.querySelector('[data-testid="object-list"]')).toBeTruthy();
     expect(document.querySelector('[data-testid="inspector"]')).toBeTruthy();
     expect(studio.gameContainer.id).toBe(STUDIO_IDS.gameContainer);
+    expect(document.getElementById(STUDIO_IDS.pauseOverlay)?.textContent).toBe('Paused');
+    expect(document.getElementById(STUDIO_IDS.pauseOverlay)?.hasAttribute('hidden')).toBe(true);
     expect(STUDIO_PANELS.map((panel) => panel.id)).toEqual(['scenes', 'objects', 'inspector']);
   });
 });
